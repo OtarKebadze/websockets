@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/main.js" defer type="module"></script>
+    <link rel="stylesheet" href="/styles.css" />
+    <title>NUESTRO CHAT</title>
+  </head>
+  <body>
+    <h1>INGRESE SUS DATOS</h1>
+    <div class="contenedor">
+      <form action="/api/author" method="POST">
+        <input
+          type="text"
+          placeholder="INGRESE SU MAIL"
+          id="mail"
+          name="mail"
+        />
+        <input
+          type="text"
+          placeholder="INGRESE SU NOMBRE"
+          id="nombre"
+          name="nombre"
+        />
+        <input
+          type="text"
+          placeholder="INGRESE SU APELLIDO"
+          id="apellido"
+          name="apellido"
+        />
+        <input
+          type="text"
+          placeholder="INGRESE SU EDAD"
+          id="edad"
+          name="edad"
+        />
+        <input
+          type="text"
+          placeholder="INGRESE SU NICK"
+          id="nick"
+          name="nick"
+        />
+        <input
+          type="text"
+          placeholder="INGRESE UN AVATAR"
+          id="avatar"
+          name="avatar"
+        />
+        <input type="submit" id="boton" />
+      </form>
+      <div class="mensajes">
+        <h2>CHAT</h2>
+        <form onsubmit="return enviarMensaje()">
+          <input
+            type="text"
+            id="text"
+            placeholder="INGRESE SU MENSAJE"
+            name="text"
+          />
+          <button type="submit">ENVIAR</button>
+        </form>
+        <div id="mensajes">
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

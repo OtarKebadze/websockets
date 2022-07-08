@@ -1,0 +1,26 @@
+const socket = io();
+console.log("hola")
+const enviarMensaje = () => {
+  console.log("soy la funcion");
+  const text = document.getElementById("text").value;
+  socket.emit("new_message", text);
+  return false;
+};
+
+const crearEtiquetasMensaje = (mensaje) => {
+  const { text } = mensaje;
+  return `
+    <div>
+    <p>${text}</p>
+    </div>
+    `;
+};
+
+const agregarMensajes = (mensajes) => {
+  const mensajesFinal = mensajes
+    .map((mensaje) => crearEtiquetasMensaje(mensaje))
+    .join(" ");
+  document.getElementById("mensajes").innerHTML = mensajesFinal;
+};
+
+socket.on("messages", (messages) => agregarMensajes(messages));
