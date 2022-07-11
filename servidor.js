@@ -19,6 +19,7 @@ app.set("views", "./public/views_ejs/views/");
 app.set("view engine", "ejs");
 app.use("/api", router);
 
+const normalizar = (data)=>{
 let authorSchema = new norm.schema.Entity("authors",{},{idAttribute:"mail"});
 let messageSchema = new norm.schema.Entity("messages" , {
   author: authorSchema
@@ -28,17 +29,26 @@ let chatSchema = new norm.schema.Entity("chats", {
 })
 const messagesToNormalize = {
   id:1,
-  messages:chats
+  messages:data
 }
 const normalizado = norm.normalize(messagesToNormalize, chatSchema);
-print(normalizado)
+return normalizado
+}
 
-socketServer.on("connection", (socket) => {
+
+
+socketServer.on("connection",async(socket) => {
   console.log("NUEVO USUARIO CONECTADO");
+  let data = await chat.getAll();
+  console.log(data)
+  let normalizado = normalizar(data)
+  console.log(data , " 2 ")
   socket.emit("messages", normalizado);
   socket.on("new_message", async (obj) => {
     await chat.saveAuthor(obj);
-    socketServer.emit("messages",normalizado);
+    let data = await chat.getAll();
+    let normalizado = normalizar(data)
+    socketServer.sockets.emit("messages",normalizado);
   });
 });
 

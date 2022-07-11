@@ -1,4 +1,3 @@
-const fs = require("fs");
 const express = require("express");
 const producto =require("./index")
 const router = express.Router();
