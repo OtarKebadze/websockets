@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js
+    "></script>
     <script src="/main.js" defer type="module"></script>
     <link rel="stylesheet" href="/styles.css" />
     <title>NUESTRO CHAT</title>
@@ -12,7 +14,7 @@
   <body>
     <h1>INGRESE SUS DATOS</h1>
     <div class="contenedor">
-      <form action="/api/author" method="POST">
+      <form id="formu">
         <input
           type="text"
           placeholder="INGRESE SU MAIL"
@@ -49,23 +51,15 @@
           id="avatar"
           name="avatar"
         />
+        <input
+          type="text"
+          id="text"
+          placeholder="INGRESE SU MENSAJE"
+          name="text"
+        />
         <input type="submit" id="boton" />
       </form>
-      <div class="mensajes">
-        <h2>CHAT</h2>
-        <form onsubmit="return enviarMensaje()">
-          <input
-            type="text"
-            id="text"
-            placeholder="INGRESE SU MENSAJE"
-            name="text"
-          />
-          <button type="submit">ENVIAR</button>
-        </form>
-        <div id="mensajes">
-
-        </div>
-      </div>
+      <div id="mensajes"></div>
     </div>
   </body>
 </html>

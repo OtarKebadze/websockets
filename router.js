@@ -1,9 +1,6 @@
 const fs = require("fs");
 const express = require("express");
 const producto =require("./index")
-const chat = require("./chat");
-const { captureRejections } = require("events");
-const { send } = require("process");
 const router = express.Router();
 
 /* PLANTILLAS */
@@ -27,15 +24,6 @@ router.post("/productos-test", async(req, res) => {
 router.get("/chat" , async (req,res)=> {
 res.render("messages")
 })
-router.get("/messages/:id?" , async (req,res)=> {
-  let id = Number(req.params.id);
-  !id ? res.send(await chat.getAllAuthors())
-      :res.send(await chat.getId(id))
-})
-// router.post("/author" , async(req,res)=>{
-//   await chat.saveAuthor(req.body);
-// })
-
 
 
 module.exports = router;

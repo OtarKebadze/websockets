@@ -15,7 +15,6 @@ class Contenedor {
   async save(obj) {
     try {
       let data = await this.getAll();
-      console.log(data)
       if (!data) {
         let arr = [];
         for (let i = 0; i <= 5; i++) {

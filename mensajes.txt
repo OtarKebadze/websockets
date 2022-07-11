@@ -1,0 +1,1 @@
+[{"author":{"mail":"Otar@gmail.com","nombre":"Otar","apellido":"Kebadze","edad":"31","nick":"Oto","avatar":"1"},"text":"HOLA  A TODOS","id":1},{"author":{"mail":"Otar@gmail.com","nombre":"Otar","apellido":"Kebadze","edad":"31","nick":"Oto","avatar":"1"},"text":"COMO ESTAN TODOS?","id":2}]

@@ -1,20 +1,32 @@
 {
-  "name": "normalizr",
+  "name": "y",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon servidor.js"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OtarKebadze/backend.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OtarKebadze/backend/issues"
+  },
+  "homepage": "https://github.com/OtarKebadze/backend#readme",
   "dependencies": {
-    "@faker-js/faker": "^7.3.0",
     "body-parser": "^1.20.0",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
+    "nodemon": "^2.0.16",
     "normalizr": "^3.6.2",
     "socket.io": "^4.5.1"
-  }
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.3.0"
+  },
+  "keywords": [],
+  "description": ""
 }
