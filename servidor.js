@@ -1,6 +1,5 @@
 const express = require("express");
 const router = require("./router");
-let fs = require("fs")
 const app = express();
 const chat = require("./chat");
 const bodyParser = require("body-parser");
@@ -8,13 +7,29 @@ const { Server: HttpServer } = require("http");
 const { Server: SocketServer } = require("socket.io");
 const httpServer = new HttpServer(app);
 const socketServer = new SocketServer(httpServer);
-let chats = JSON.parse(fs.readFileSync("mensajes.txt" , "utf-8"));
+const session = require("express-session");
+const coockieParser= require("cookie-parser");
+const MongoStore = require("connect-mongo");
+const advanceOptions = {useNewUrlParser: true , useUnifiedTopology : true};
 const port = 8080;
-const print= require("./print")
+
 const norm = require("normalizr");
 app.use(express.static("public"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(coockieParser());
+app.use(session({
+store:MongoStore.create({
+  mongoUrl:"mongodb+srv://otar:admin@ecommerce.qwgtm.mongodb.net/?retryWrites=true&w=majority",
+  mongoOptions: advanceOptions
+}),
+secret:"Otar",
+resave:true,
+saveUninitialized:true,
+cookie:{
+  maxAge:600000
+}
+}))
 app.set("views", "./public/views_ejs/views/");
 app.set("view engine", "ejs");
 app.use("/api", router);

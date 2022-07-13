@@ -39,6 +39,6 @@ class Container {
   }
 }
 
-let producto = new Container("productos.txt")
+let product = new Container("products.txt")
 
-module.exports = producto;
+module.exports = product;

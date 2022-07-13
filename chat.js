@@ -38,6 +38,6 @@ class Chat {
   }
 }
 
-const chat = new Chat("mensajes.txt");
+const chat = new Chat("messages.txt");
 
 module.exports = chat;

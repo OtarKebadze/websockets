@@ -1,22 +1,28 @@
 const express = require("express");
-const producto =require("./index")
+const product =require("./index")
 const router = express.Router();
+
+
 
 /* PLANTILLAS */
 
 /*--------------------------------------------------------------------------------------------------------------*/
 
-router.get("/", async (req, res) => {
-  let productos = await producto.getAll() === '' ? '' : await producto.getAll();
-  res.render('index', {productos})
+router.get("/", (req,res)=>{
+  res.render('index')
+})
+router.get("/products", async (req, res) => {
+  let name = "hola"
+  let products = await product.getAll() === '' ? '' : await product.getAll();
+  res.render('main', {products, name})
   });
 
 
-router.post("/productos-test", async(req, res) => {
+router.post("/products-test", async(req, res) => {
   for (let i = 0; i <= 5; i++) {
-    await producto.save(producto.prods())
+    await product.save(product.prods())
   }
-  res.send(await producto.getAll())
+  res.send(await product.getAll())
 });
 
 // CHAT
