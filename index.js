@@ -1,6 +1,6 @@
 const { faker }= require('@faker-js/faker');
 const fs = require("fs");
-class Contenedor {
+class Container {
   constructor(nombreArchivo) {
     this.archivo = nombreArchivo;
   }
@@ -39,6 +39,6 @@ class Contenedor {
   }
 }
 
-let producto = new Contenedor("productos.txt")
+let producto = new Container("productos.txt")
 
 module.exports = producto;

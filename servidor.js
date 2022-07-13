@@ -31,27 +31,26 @@ const messagesToNormalize = {
   id:1,
   messages:data
 }
-const normalizado = norm.normalize(messagesToNormalize, chatSchema);
-return normalizado
+const normalized = norm.normalize(messagesToNormalize, chatSchema);
+return normalized
 }
 
 
 
 socketServer.on("connection",async(socket) => {
   console.log("NUEVO USUARIO CONECTADO");
-  let data = await chat.getAll();
-  console.log(data)
-  let normalizado = normalizar(data)
-  console.log(data , " 2 ")
-  socket.emit("messages", normalizado);
-  socket.on("new_message", async (obj) => {
-    await chat.saveAuthor(obj);
-    let data = await chat.getAll();
-    let normalizado = normalizar(data)
-    socketServer.sockets.emit("messages",normalizado);
+  let dataFromClassChat = await chat.getAll();
+  console.log(dataFromClassChat)
+  let normalized = normalizar(dataFromClassChat)
+  socket.emit("messages", normalized);
+  socket.on("new_message", async (msg) => {
+    await chat.saveAuthor(msg);
+    let dataFromClassChat = await chat.getAll();
+    let normalized = normalizar(dataFromClassChat)
+    socketServer.sockets.emit("messages",normalized);
   });
 });
 
 httpServer.listen(port, () => {
-  console.log("LEVANTANDO SERVIDOR");
+  console.log("Server Up On Port : ", `${port}`);
 });

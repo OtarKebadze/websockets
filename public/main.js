@@ -17,25 +17,25 @@ let chatSchema = new normalizr.schema.Entity("chats", {
 });
 const messagesToNormalize = {
   id: 1,
-  messages: mensajes,
+  messages: messages,
 };
 
 let form = document.getElementById("formu");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   let mail = document.getElementById("mail").value;
-  let nombre = document.getElementById("nombre").value;
-  let apellido = document.getElementById("apellido").value;
-  let edad = document.getElementById("edad").value;
+  let name = document.getElementById("name").value;
+  let lastName = document.getElementById("lastName").value;
+  let age = document.getElementById("age").value;
   let nick = document.getElementById("nick").value;
   let avatar = document.getElementById("avatar").value;
   let text = document.getElementById("text").value;
   const author = {
     author: {
       mail: mail,
-      nombre: nombre,
-      apellido: apellido,
-      edad: edad,
+      nombre: name,
+      apellido: lastName,
+      edad: age,
       nick: nick,
       avatar: avatar,
     },
@@ -45,7 +45,7 @@ form.addEventListener("submit", (e) => {
   return false;
 });
 
-const crearEtiquetasMensaje = (message) => {
+const createTags = (message) => {
   let html = `
   <p>${message.author.nick}</p>
   <img src="${message.avatar}">
@@ -54,21 +54,21 @@ const crearEtiquetasMensaje = (message) => {
   return html;
 };
 
-const agregarMensajes = (mensajes) => {
-  let desnormalizado = normalizr.denormalize(
-    mensajes.result,
+const addMessages = (messagesFromSocket) => {
+  let denormalizedMessages = normalizr.denormalize(
+    messagesFromSocket.result,
     chatSchema,
-    mensajes.entities
+    messagesFromSocket.entities
   );
-  let messages = desnormalizado.messages;
-  let mensNorm = JSON.stringify(mensajes);
-  let mensDenorm = JSON.stringify(messages);
-  let compresion = 100-(( mensDenorm.length * 100 )/ mensNorm.length);
-  const mensajesFinal = messages
-    .map((message) => crearEtiquetasMensaje(message))
+  let messages = denormalizedMessages.messages;
+  let messNorm = JSON.stringify(messages);
+  let messDenorm = JSON.stringify(messages);
+  let compression = 100-(( messDenorm.length * 100 )/ messNorm.length);
+  const finalMessage = messages
+    .map((message) => createTags(message))
     .join(" ");
-  document.getElementById("compresion").innerHTML = `EL % DE COMPRESION ES DE ${compresion}`
-  document.getElementById("mensajes").innerHTML = mensajesFinal;
+  document.getElementById("compression").innerHTML = `EL % DE COMPRESION ES DE ${compression}`
+  document.getElementById("messages").innerHTML = finalMessage;
 };
 
-socket.on("messages", (messages) => agregarMensajes(messages));
+socket.on("messages", (messages) => addMessages(messages));
