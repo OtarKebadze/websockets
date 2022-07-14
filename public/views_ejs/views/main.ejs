@@ -5,13 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/main.js" defer type="module"></script>ç
     <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js
-    " defer type="module"></script>
+    "></script>
+    <script src="/main.js" defer type="module"></script>
     <link rel="stylesheet" href="/styles.css">
     <title>Document</title>
 </head>
 <body>
+    <% if (name !== "") { %>
+        <div class="nav">
+            <p>Bienvenido <%= name %></p>
+            <form action="/api/logout" method="POST">
+                <button type="submit">LOGOUT</button>
+            </form>
+            
+        </div>
+    <% } %>
     <h1>OUR PRODUCTS</h1>
     <% if (products !== [] ) { %>
         <table>
@@ -21,7 +30,7 @@
                 <th>IMAGE</th>
             </thead>
             <tbody>
-                <% productos.forEach((prod)=> { %>
+                <% products.forEach((prod)=> { %>
                 <tr>
                     <td><%= prod.title %></td>
                     <td>$ <%= prod.price %></td>
@@ -33,9 +42,6 @@
     <%}else{%>
         <p>NO DATA!</p>
     <% } %>
-    <a href="http://localhost:8080/api/">VOLVER</a>
-
-
 
 </body>
 </html>

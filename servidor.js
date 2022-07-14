@@ -12,7 +12,6 @@ const coockieParser= require("cookie-parser");
 const MongoStore = require("connect-mongo");
 const advanceOptions = {useNewUrlParser: true , useUnifiedTopology : true};
 const port = 8080;
-
 const norm = require("normalizr");
 app.use(express.static("public"));
 app.use(express.json());
@@ -26,8 +25,9 @@ store:MongoStore.create({
 secret:"Otar",
 resave:true,
 saveUninitialized:true,
+rolling:true,
 cookie:{
-  maxAge:600000
+  maxAge:60000,
 }
 }))
 app.set("views", "./public/views_ejs/views/");
@@ -51,11 +51,9 @@ return normalized
 }
 
 
-
 socketServer.on("connection",async(socket) => {
   console.log("NUEVO USUARIO CONECTADO");
   let dataFromClassChat = await chat.getAll();
-  console.log(dataFromClassChat)
   let normalized = normalizar(dataFromClassChat)
   socket.emit("messages", normalized);
   socket.on("new_message", async (msg) => {

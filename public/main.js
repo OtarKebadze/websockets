@@ -15,10 +15,7 @@ let messageSchema = new normalizr.schema.Entity(
 let chatSchema = new normalizr.schema.Entity("chats", {
   messages: [messageSchema],
 });
-const messagesToNormalize = {
-  id: 1,
-  messages: messages,
-};
+
 
 let form = document.getElementById("formu");
 form.addEventListener("submit", (e) => {

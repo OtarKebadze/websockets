@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .contenedor form{
     width: 25%;
     display: flex;
@@ -20,4 +25,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.nav {
+    border: 1px solid black;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(146, 223, 146);
+    height: 4rem;
+    align-items: center;
+    font-size: x-large;
+    font-weight: 900;
 }

@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js
+    "></script>
+    <script src="/main.js" defer type="module"></script>
     <title>Document</title>
 </head>
 <body>
     <div class="containerLogin">
-        <input type="text" name="userLogIn" id="userLogIn">
-        <input type="button" value="LogIn">
+        <form action="/api/products" method="POST">
+        <input type="text" name="user" id="userLogIn" placeholder="ADD YOUR USERNAME">
+        <input type="submit" value="LogIn">
+    </form>
     </div>
 </body>
 </html>
