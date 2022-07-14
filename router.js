@@ -32,7 +32,7 @@ router.get("/products", async (req, res) => {
 
 router.post("/logout", (req, res) => {
   req.session.destroy((err) => {
-    console.log("HASTA LUEGO");
+    console.log("HOPE TO SEE YOU SOON");
     if (req.session == undefined) {
       setTimeout(() => {
         res.redirect("/api/");
